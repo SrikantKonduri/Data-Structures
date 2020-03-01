@@ -11,25 +11,24 @@ class Node{
 
 class DoubleLinkedList{
     
-    Node head;
+    Node head,tail;
 
     DoubleLinkedList(){
         this.head = null;
+        this.tail = null;
     }
 
     void insertLast(int data){
         
         if(this.head == null){
             this.head = new Node(data);
+            this.tail = this.head;
         }
         else{
-            Node temp = this.head;
-            while(temp.next != null){
-                temp = temp.next;
-            }
             Node new_node = new Node(data);
-            new_node.prev = temp;
-            temp.next = new_node;
+            new_node.prev = this.tail;
+            this.tail.next = new_node;
+            this.tail = new_node;
         }
     }
 
@@ -66,21 +65,18 @@ class DoubleLinkedList{
     }
 
     void deleteLast(){
-        Node temp = this.head;
-        
-        if(temp != null){
-            //  IF LIST CONTAINS ONLY 1 NODE
-            if(temp.next == null){
+        Node temp_tail = this.tail;
+
+        if(temp_tail != null){
+            if(this.head == this.tail){
                 this.head = null;
+                this.tail = null;
             }
             else{
-                // REACHING TO LAST BUT ONE NODE
-                while(temp.next.next != null){
-                    temp = temp.next;
-                }
-                temp.next = null;
+                this.tail = temp_tail.prev;
+                this.tail.next = null;
             }
-        } 
+        }
         else{
             System.out.println("List is Empty");
         }
@@ -121,7 +117,6 @@ class DoubleLinkedList{
     }
 
     void findAndDelete(int value){
-        // System.out.println("In findAndDelete");
         Node temp = this.head;
         if(temp != null){
             while(temp != null){
@@ -154,8 +149,6 @@ class DoubleLinkedList{
                 temp = temp.next;
             }
         }
-        // System.out.println("_______________");
-        // this.printList();
     }
 
 }
