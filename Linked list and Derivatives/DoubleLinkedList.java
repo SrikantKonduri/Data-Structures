@@ -34,7 +34,6 @@ class DoubleLinkedList{
 
     void printList(){
         Node temp = this.head;
-        // System.out.println("------PRINT LIST-----");
         if(temp != null){
             while(temp != null){
                 System.out.print(temp.data + "->");
@@ -44,7 +43,7 @@ class DoubleLinkedList{
         }
         else{
             System.out.println("Empty List");
-        }// System.out.println("------PRINT LIST-----");
+        }
     }
 
     void printReverseList(){
